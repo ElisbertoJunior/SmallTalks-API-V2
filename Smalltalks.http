@@ -1,0 +1,6 @@
+@Smalltalks_HostAddress = http://localhost:5110
+
+GET {{Smalltalks_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
