@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Smalltalks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f52fe5f85491629f00d311a245804490765d3f71")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b7c4dd259cd258cee79e3ba4f1409bab3c74b4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Smalltalks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Smalltalks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

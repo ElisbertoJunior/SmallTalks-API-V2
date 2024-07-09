@@ -2,13 +2,18 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Smalltalks.Data;
 using Smalltalks.Repository;
 using Smalltalks.Repository.Interfaces;
+using Smalltalks.Services;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
+using Serilog;
+using Serilog.Core;
+
 
 namespace Smalltalks
 {
@@ -16,7 +21,16 @@ namespace Smalltalks
     {
         public static void Main(string[] args)
         {
+            var POLICY = "*";
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configurando Serilog
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("Logs/myapp-.log", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             // Add services to the container.
 
@@ -24,6 +38,19 @@ namespace Smalltalks
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("BlipPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyHeader()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
+            
 
             builder.Services.AddEntityFrameworkNpgsql()
                 .AddDbContext<SmallTalksDBContext>(
@@ -69,16 +96,28 @@ namespace Smalltalks
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
+            app.Use(async (context, next) =>
+            {
+                Log.Information("Handling request: " + context.Request.Method + " " + context.Request.Path);
+                await next.Invoke();
+                Log.Information("Finished handling request.");
+               
+            });
+
+            // Presentation message after application is started
+            Log.Information("****************************************");
+            Log.Information("*    Aplicação iniciada com sucesso!   *");
+            Log.Information("****************************************");
+
+            app.UseCors("BlipPolicy");
 
             app.MapControllers();
 

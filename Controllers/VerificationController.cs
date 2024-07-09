@@ -10,6 +10,7 @@ namespace Smalltalks.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class VerificationController : ControllerBase
     {
         private readonly ISwearingRepository _swearingRepository;
@@ -30,7 +31,6 @@ namespace Smalltalks.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Route("{entry}")]
         public async Task<ActionResult<string>> VerificationSmallTalks(string entry)
         {
@@ -76,7 +76,7 @@ namespace Smalltalks.Controllers
 
             }
 
-            return Ok("Não é SmallTlks");
+            return Ok("Não é SmallTalks");
 
 
         }
