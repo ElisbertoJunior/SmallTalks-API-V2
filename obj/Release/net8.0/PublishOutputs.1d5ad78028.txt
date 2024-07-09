@@ -1,0 +1,16 @@
+c:\inetpub\SmallTalks\Smalltalks.exe
+c:\inetpub\SmallTalks\appsettings.Development.json
+c:\inetpub\SmallTalks\appsettings.json
+c:\inetpub\SmallTalks\Smalltalks.dll
+c:\inetpub\SmallTalks\Smalltalks.runtimeconfig.json
+c:\inetpub\SmallTalks\Smalltalks.pdb
+c:\inetpub\SmallTalks\Microsoft.EntityFrameworkCore.dll
+c:\inetpub\SmallTalks\Microsoft.EntityFrameworkCore.Abstractions.dll
+c:\inetpub\SmallTalks\Microsoft.EntityFrameworkCore.Relational.dll
+c:\inetpub\SmallTalks\Microsoft.OpenApi.dll
+c:\inetpub\SmallTalks\Npgsql.dll
+c:\inetpub\SmallTalks\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+c:\inetpub\SmallTalks\Swashbuckle.AspNetCore.Swagger.dll
+c:\inetpub\SmallTalks\Swashbuckle.AspNetCore.SwaggerGen.dll
+c:\inetpub\SmallTalks\Swashbuckle.AspNetCore.SwaggerUI.dll
+c:\inetpub\SmallTalks\Smalltalks.deps.json
